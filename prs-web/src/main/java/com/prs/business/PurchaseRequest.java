@@ -46,6 +46,8 @@ public class PurchaseRequest {
 	submittedDate =null;
 	reasonForRejection ="";
 	}
+	
+	
 
 
 	public PurchaseRequest (int id, int userID, String description, String justification, Date dateNeeded,

@@ -28,9 +28,20 @@ public class Product {
 		photopath ="";	
 	}
 
-	public Product(int id, int vendorID, String partNumber, String name, double price, String unit, String photopath) {
+	public Product(int ID, int vendorID, String partNumber, String name, double price, String unit, String photopath) {
 		super();
-		this.id = id;
+		this.id = ID;
+		this.vendorID = vendorID;
+		this.partNumber = partNumber;
+		this.name = name;
+		this.price = price;
+		this.unit = unit;
+		this.photopath = photopath;
+	}
+	
+	public Product(int vendorID, String partNumber, String name, double price, String unit, String photopath) {
+		super();
+		
 		this.vendorID = vendorID;
 		this.partNumber = partNumber;
 		this.name = name;

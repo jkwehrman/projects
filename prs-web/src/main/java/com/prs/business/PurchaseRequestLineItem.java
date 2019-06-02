@@ -31,6 +31,12 @@ public class PurchaseRequestLineItem {
 		this.quantity = quantity;
 	}
 
+	public PurchaseRequestLineItem(int purchaseRequestID, int productID, int quantity) {
+	
+		this.purchaseRequestID = purchaseRequestID;
+		this.productID = productID;
+		this.quantity = quantity;
+	}
 	public int getId() {
 		return id;
 	}

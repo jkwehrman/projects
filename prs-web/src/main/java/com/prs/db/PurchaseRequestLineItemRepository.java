@@ -9,7 +9,7 @@ public interface PurchaseRequestLineItemRepository extends CrudRepository<Purcha
 
 	Optional<PurchaseRequestLineItem> findBypurchaseRequestID(int purchaseRequestID);
 
-	List<PurchaseRequestLineItem> findByPurchaseRequestID(int id);
+	Optional<PurchaseRequestLineItem> findByPurchaseRequestID(int id);
 
 //	Object findAllPurchaseRequestID(int id);
 	

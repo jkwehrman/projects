@@ -8,7 +8,7 @@ import com.prs.business.Product;
 
 public interface ProductRepository extends CrudRepository<Product, Integer> {
 	
-	public Optional<Product> findByVendorID(String vendorID);
+	public Optional<Product> findByVendorID(int i);
 	public Optional<Product> findByPartNumber(String partNumber);
 }
  
