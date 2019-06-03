@@ -13,8 +13,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import com.prs.business.PurchaseRequestLineItem;
-import com.prs.business.User;
-import com.prs.db.UserRepository;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -31,9 +29,10 @@ public class PurchaseRequestLineItemRepoTests {
 	@Test
 	public void findByPurchaseRequestIDShouldReturnPRLI() {
 
-	this.entityManager.persist(new PurchaseRequestLineItem(13, 2, 5, 95));
-	Optional<PurchaseRequestLineItem> u = this.PurchaseRequestLineItemRepo.findByPurchaseRequestID(2);
-	assertThat(u.get().getPurchaseRequestID()).isEqualTo(2);
+//	this.entityManager.persist(new PurchaseRequestLineItem(13, 15, 5, 95));
+	Optional<PurchaseRequestLineItem> u = this.PurchaseRequestLineItemRepo.findByPurchaseRequestID(15);
+	PurchaseRequestLineItem p = u.get();
+	assertThat (p.getPurchaseRequestID()).isEqualTo(15);
 
 	}
 }

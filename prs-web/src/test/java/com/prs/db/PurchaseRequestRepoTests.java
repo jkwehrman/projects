@@ -30,10 +30,10 @@ public class PurchaseRequestRepoTests {
 	
 	@Test
 	public void findByUserIDShouldReturnPurchaseRequest() {
-		Date mDate = new Date(0, 0, 0);
-		mDate.setYear(2019);
-		mDate.setMonth(4);
-		mDate.getDay();
+		Date mDate = new Date(2019, 4, 11);
+//		mDate.setYear(2019);
+//		mDate.setMonth(4);
+//		mDate.getDay(11);
 	this.entityManager.persist(new PurchaseRequest (2, "description", "justification", mDate, "deliveryMode", "status", 10.00, "reject"));
 	Optional<PurchaseRequest> u = this.PurchaseRequestRepo.findByUserID(2);
 	assertThat(u.get().getUserID()).isEqualTo(2);
