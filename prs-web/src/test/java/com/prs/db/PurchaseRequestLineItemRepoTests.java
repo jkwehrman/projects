@@ -32,7 +32,7 @@ public class PurchaseRequestLineItemRepoTests {
 //	this.entityManager.persist(new PurchaseRequestLineItem(13, 15, 5, 95));
 	Optional<PurchaseRequestLineItem> u = this.PurchaseRequestLineItemRepo.findByPurchaseRequestID(15);
 	PurchaseRequestLineItem p = u.get();
-	assertThat (p.getPurchaseRequestID()).isEqualTo(15);
+	assertThat (p.getPurchaseRequest()).isEqualTo(15);
 
 	}
 }

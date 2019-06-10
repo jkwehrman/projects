@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PurchaseRequestLineItem {
@@ -13,28 +15,34 @@ public class PurchaseRequestLineItem {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int purchaseRequestID;
-	private int productID;
+//	private int purchaseRequestID;
+	@ManyToOne
+	@JoinColumn(name="PurchaseRequestID")
+	private PurchaseRequest purchaseRequest;
+//	private int productID;
+	@ManyToOne
+	@JoinColumn(name="productID")
+	private Product product;
 	private int quantity;
 	
 	public PurchaseRequestLineItem() {
 		id =0;
-		purchaseRequestID =0;
-		productID =0;
+		purchaseRequest =null;
+		product =null;
 		quantity =0;
 	}
 	
-	public PurchaseRequestLineItem(int id, int purchaseRequestID, int productID, int quantity) {
+	public PurchaseRequestLineItem(int id, PurchaseRequest purchaseRequest, Product product, int quantity) {
 		this.id = id;
-		this.purchaseRequestID = purchaseRequestID;
-		this.productID = productID;
+		this.purchaseRequest = purchaseRequest;
+		this.product = product;
 		this.quantity = quantity;
 	}
 
-	public PurchaseRequestLineItem(int purchaseRequestID, int productID, int quantity) {
+	public PurchaseRequestLineItem(PurchaseRequest purchaseRequest, Product product, int quantity) {
 	
-		this.purchaseRequestID = purchaseRequestID;
-		this.productID = productID;
+		this.purchaseRequest = purchaseRequest;
+		this.product = product;
 		this.quantity = quantity;
 	}
 	public int getId() {
@@ -45,20 +53,20 @@ public class PurchaseRequestLineItem {
 		this.id = id;
 	}
 
-	public int getPurchaseRequestID() {
-		return purchaseRequestID;
+	public PurchaseRequest getPurchaseRequest() {
+		return purchaseRequest;
 	}
 
-	public void setPurchaseRequestID(int purchaseRequestID) {
-		this.purchaseRequestID = purchaseRequestID;
+	public void setPurchaseRequestID(PurchaseRequest purchaseRequestID) {
+		this.purchaseRequest = purchaseRequest;
 	}
 
-	public int getProductID() {
-		return productID;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProductID(int productID) {
-		this.productID = productID;
+	public void setProductID(Product product) {
+		this.product = product;
 	}
 
 	public int getQuantity() {
@@ -71,8 +79,8 @@ public class PurchaseRequestLineItem {
 
 	@Override
 	public String toString() {
-		return "PurchaseRequestLineItem [id=" + id + ", purchaseRequestID=" + purchaseRequestID + ", productID="
-				+ productID + ", quantity=" + quantity + "]";
+		return "PurchaseRequestLineItem [id=" + id + ", purchaseRequest=" + purchaseRequest + ", product="
+				+ product + ", quantity=" + quantity + "]";
 	}
 	
 	

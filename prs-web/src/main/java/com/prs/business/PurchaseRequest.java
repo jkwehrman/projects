@@ -17,8 +17,9 @@ public class PurchaseRequest {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 //	@ManyToOne(fetch=FetchType.EAGER)
-  	@JoinColumn(name = "userID")
-	private int userID;
+  	@ManyToOne
+  	@JoinColumn(name="userID")
+  	private User user;
 	private String description;
 	private String justification;
 	private Date dateNeeded;
@@ -27,16 +28,10 @@ public class PurchaseRequest {
 	private double total;
 	private java.util.Date submittedDate;
 	private String reasonForRejection;
-
-
-
-//    @ManyToOne(fetch=FetchType.EAGER)
-//    @JoinColumn(name = "userID")
-//    private User user;
 	
 	public PurchaseRequest () {
 	id =0;
-	userID =0;
+	user =null;
 	description ="";
 	justification ="";
 	dateNeeded =null;
@@ -50,14 +45,14 @@ public class PurchaseRequest {
 	
 
 
-	public PurchaseRequest (int id, int userID, String description, String justification, Date dateNeeded,
+	public PurchaseRequest (int id, User user, String description, String justification, Date dateNeeded,
 			String deliveryMode, String status, double total, 
 		//	Date submittedDate, 
 			String reasonForRejection,
 			boolean isActive, Date dateCreated, Date dateUpdated, int updatedByUser) {
 		super();
 		this.id = id;
-		this.userID = userID;
+		this.user = user;
 		this.description = description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
@@ -68,10 +63,10 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 
-	public PurchaseRequest (int userID, String description, String justification, Date dateNeeded,
+	public PurchaseRequest (User user, String description, String justification, Date dateNeeded,
 			String deliveryMode, String status, double total, String reasonForRejection) {
 		//super();
-		this.userID = userID;
+		this.user = user;
 		this.description = description;
 		this.justification = justification;
 		this.dateNeeded = dateNeeded;
@@ -91,13 +86,13 @@ public class PurchaseRequest {
 	}
 
 
-	public int getUserID() {
-		return userID;
+	public User getUser() {
+		return user;
 	}
 
 
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 
@@ -184,7 +179,7 @@ public class PurchaseRequest {
 
 	@Override
 	public String toString() {
-		return "PurchaseRequest [id=" + id + ", userID=" + userID + ", description=" + description + ", justification="
+		return "PurchaseRequest [id=" + id + ", user=" + user + ", description=" + description + ", justification="
 				+ justification + ", dateNeeded=" + dateNeeded + ", deliveryMode=" + deliveryMode + ", status=" + status
 				+ ", total=" + total + ", submittedDate=" + submittedDate + ", reasonForRejection=" + reasonForRejection
 				+ "]";

@@ -112,10 +112,14 @@ public class PurchaseRequestLineItemController {
 	}
 
 	@GetMapping("/lines-for-pr/{id}")
-	public JsonResponse getByPRid(@PathVariable int id) {
+	public JsonResponse getByPRLI(@PathVariable int id) {
 		JsonResponse jr = null;
 		try {
-			jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.findByPurchaseRequestID(id));
+			Optional <PurchaseRequestLineItem> oprli = purchaseRequestLineItemRepo.findById(id);
+			PurchaseRequestLineItem prli = oprli.get();
+			PurchaseRequest pr = prli.getPurchaseRequest();
+			
+			jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.findByPurchaseRequest(pr));
 		}
 		catch (Exception e ) {
 			jr=JsonResponse.getInstance(e);
@@ -129,14 +133,10 @@ public class PurchaseRequestLineItemController {
 		try {
 			
 			jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
-			int prid = u.getPurchaseRequestID();
+			PurchaseRequest pr = u.getPurchaseRequest();
 			int q = u.getQuantity();
-			int pid = u.getProductID();
-			Optional<PurchaseRequest> opr = purchaseRequestRepo.findById(prid);
-			PurchaseRequest pr = opr.get();
+			Product p = u.getProduct();
 			double t = pr.getTotal();
-			Optional<Product> op = productRepo.findById(pid);
-			Product p = op.get();
 			double itemp = p.getPrice();			
 			Double newT = t+(q*itemp);  
 			pr.setTotal(newT);
@@ -154,16 +154,10 @@ public class PurchaseRequestLineItemController {
 		JsonResponse jr = null;
 		try {
 			// 1st step get parent purchase request 
-			int prid = u.getPurchaseRequestID();
-			Optional<PurchaseRequest> opr = purchaseRequestRepo.findById(prid);
-			PurchaseRequest pr = opr.get();
-			// 2nd step get old total
+			PurchaseRequest pr = u.getPurchaseRequest();
 			double oldT = pr.getTotal();
 			// 3rd step get product
-			int pid = u.getProductID();
-			Optional<Product> op = productRepo.findById(pid);
-			// 4th step get product/price
-			Product p = op.get();
+			Product p = u.getProduct();
 			double itemP = p.getPrice();
 			// 5th step calculate new total
 			int q = u.getQuantity();
@@ -194,16 +188,11 @@ public class PurchaseRequestLineItemController {
 			// 1st step get PRLIQ 
 			int newQ = u.getQuantity();
 			// 2nd step get PRid
-			int prid = u.getPurchaseRequestID();
+			PurchaseRequest pr = u.getPurchaseRequest();
 			// 3rd step get total
-			Optional<PurchaseRequest> opr = purchaseRequestRepo.findById(prid);
-			PurchaseRequest pr = opr.get();
 			double t = pr.getTotal();
 			// 4th step get product
-			int pid = u.getProductID();
-			Optional<Product> op = productRepo.findById(pid);
-			// 4th step get product/price
-			Product p = op.get();
+			Product p = u.getProduct();
 			double itemP = p.getPrice();
 			// 6th step setQuantity
 			purchaseRequestLineItemRepo.save(u);

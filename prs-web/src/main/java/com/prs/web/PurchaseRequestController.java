@@ -188,8 +188,12 @@ public class PurchaseRequestController {
 	@PostMapping("/list-review")
 	public JsonResponse listReview() {
 		JsonResponse jr = null;
+		User user = new User(1, "gloczzzzzzkhard", "gpassword", "guilderoy", "lockheart", "123-432-3456", "guilderoy@hogwarts.edu", false,true);
+				
+
+				
 		try {
-			List<PurchaseRequest> pr = purchaseRequestRepo.findByStatusAndUserIDNot("review", 1);
+			List<PurchaseRequest> pr = purchaseRequestRepo.findByStatusAndUserNot("review", user );
 			if(!pr.isEmpty()) {
 				jr=JsonResponse.getInstance(pr);
 			}	else {

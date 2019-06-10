@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Product {
@@ -11,7 +13,10 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	private int vendorID;
+	//private int vendorID;
+	@ManyToOne
+	@JoinColumn(name="vendorID")
+	private Vendor vendor;
 	private String partNumber;
 	private String name;
 	private double price;
@@ -20,7 +25,7 @@ public class Product {
 
 	public Product() {
 		id = 0;
-		vendorID = 0;
+		vendor = null;
 		partNumber ="";
 		name ="";
 		price =0.0;
@@ -28,10 +33,10 @@ public class Product {
 		photopath ="";	
 	}
 
-	public Product(int ID, int vendorID, String partNumber, String name, double price, String unit, String photopath) {
+	public Product(int ID, Vendor vendor, String partNumber, String name, double price, String unit, String photopath) {
 		super();
 		this.id = ID;
-		this.vendorID = vendorID;
+		this.vendor = vendor;
 		this.partNumber = partNumber;
 		this.name = name;
 		this.price = price;
@@ -39,10 +44,10 @@ public class Product {
 		this.photopath = photopath;
 	}
 	
-	public Product(int vendorID, String partNumber, String name, double price, String unit, String photopath) {
+	public Product(Vendor vendor, String partNumber, String name, double price, String unit, String photopath) {
 		super();
 		
-		this.vendorID = vendorID;
+		this.vendor = vendor;
 		this.partNumber = partNumber;
 		this.name = name;
 		this.price = price;
@@ -58,12 +63,12 @@ public class Product {
 		this.id = id;
 	}
 
-	public int getVendorID() {
-		return vendorID;
+	public Vendor getVendor() {
+		return vendor;
 	}
 
-	public void setVendorID(int vendorID) {
-		this.vendorID = vendorID;
+	public void setVendorID(Vendor vendor) {
+		this.vendor = vendor;
 	}
 
 	public String getPartNumber() {
@@ -108,7 +113,7 @@ public class Product {
 
 	@Override
 	public String toString() {
-		return "Product [id=" + id + ", vendorID=" + vendorID + ", partNumber=" + partNumber + ", name=" + name
+		return "Product [id=" + id + ", vendor=" + vendor + ", partNumber=" + partNumber + ", name=" + name
 				+ ", price=" + price + ", unit=" + unit + ", photopath=" + photopath + "]";
 	}
 	
