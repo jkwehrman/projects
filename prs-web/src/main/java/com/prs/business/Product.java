@@ -13,7 +13,6 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
-	//private int vendorID;
 	@ManyToOne
 	@JoinColumn(name="vendorID")
 	private Vendor vendor;
@@ -67,7 +66,7 @@ public class Product {
 		return vendor;
 	}
 
-	public void setVendorID(Vendor vendor) {
+	public void setVendor(Vendor vendor) {
 		this.vendor = vendor;
 	}
 
