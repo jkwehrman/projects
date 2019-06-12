@@ -111,7 +111,7 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@PutMapping("/reject/{id}")
+	@PutMapping("/reject")
 	public JsonResponse reject(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		u.setStatus("Rejected");
@@ -189,7 +189,7 @@ public class PurchaseRequestController {
 	public JsonResponse listReview() {
 		JsonResponse jr = null;
 		User user = new User(1, "gloczzzzzzkhard", "gpassword", "guilderoy", "lockheart", "123-432-3456", "guilderoy@hogwarts.edu", false,true);
-				
+				 
 
 				
 		try {
