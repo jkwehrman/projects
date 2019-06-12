@@ -19,7 +19,6 @@ public class PurchaseRequestLineItem {
 	@ManyToOne
 	@JoinColumn(name="PurchaseRequestID")
 	private PurchaseRequest purchaseRequest;
-//	private int productID;
 	@ManyToOne
 	@JoinColumn(name="productID")
 	private Product product;
@@ -57,7 +56,7 @@ public class PurchaseRequestLineItem {
 		return purchaseRequest;
 	}
 
-	public void setPurchaseRequestID(PurchaseRequest purchaseRequestID) {
+	public void setPurchaseRequest(PurchaseRequest purchaseRequest) {
 		this.purchaseRequest = purchaseRequest;
 	}
 
@@ -65,7 +64,7 @@ public class PurchaseRequestLineItem {
 		return product;
 	}
 
-	public void setProductID(Product product) {
+	public void setProduct(Product product) {
 		this.product = product;
 	}
 
