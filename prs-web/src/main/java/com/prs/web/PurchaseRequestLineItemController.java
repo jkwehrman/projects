@@ -88,12 +88,27 @@ public class PurchaseRequestLineItemController {
 			jr=JsonResponse.getInstance("PRLI Add failed. Exception is " + e.getMessage());		}
 		return jr;
 	}
+	
 	@PutMapping("/{id}")
 	public JsonResponse update(@RequestBody PurchaseRequestLineItem u) {
 		JsonResponse jr = null;
 		try {
 				jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
 				//recalculatePRTotal(u);
+		}
+		catch (Exception e ) {
+			jr=JsonResponse.getInstance("PRLI Update failed. Exception is " + e.getMessage());
+
+		}
+		return jr;
+	}
+	
+	@PutMapping("/purchase-request-line-items")
+	public JsonResponse updateWithRecalculatingPR(@RequestBody PurchaseRequestLineItem u) {
+		JsonResponse jr = null;
+		try {
+				jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
+				recalculatePRTotal(u);
 		}
 		catch (Exception e ) {
 			jr=JsonResponse.getInstance("PRLI Update failed. Exception is " + e.getMessage());
@@ -113,6 +128,27 @@ public class PurchaseRequestLineItemController {
 			}
 			else {
 				jr=JsonResponse.getInstance("PurchaseRequestLineItem id:  "+u.getId()+"does not exist and you are attemping to save it.");
+			}
+		}
+		catch (Exception e ) {
+			jr=JsonResponse.getInstance(e);
+		}
+		return jr;
+	}
+	
+	@DeleteMapping("/purchase-request-line-items/{id}")
+	public JsonResponse deleteWithRecalculating(@RequestBody PurchaseRequestLineItem u) {
+		JsonResponse jr = null;
+		try {
+			if (purchaseRequestLineItemRepo.existsById(u.getId())) {
+				purchaseRequestLineItemRepo.delete(u);
+				jr=JsonResponse.getInstance("Purchase Request Line Item deleted.");
+				recalculatePRTotal(u);
+
+			}
+			else {
+				jr=JsonResponse.getInstance("PurchaseRequestLineItem id:  "+u.getId()+"does not exist and you are attemping to save it.");
+				
 			}
 		}
 		catch (Exception e ) {
