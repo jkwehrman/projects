@@ -1,6 +1,6 @@
 package com.prs.business;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,13 +22,13 @@ public class PurchaseRequest {
   	private User user;
 	private String description;
 	private String justification;
-	private Date dateNeeded;
+	private LocalDate dateNeeded;
 	private String deliveryMode;
 	private String status;
 	private double total;
-	private java.util.Date LocalDate;
+	private LocalDate localDate;
 	private String reasonForRejection;
-	private int submittedDate;
+	private LocalDate submittedDate;
 	
 	public PurchaseRequest () {
 	id =0;
@@ -39,18 +39,18 @@ public class PurchaseRequest {
 	deliveryMode ="";
 	status ="";
 	total =0.0;
-	submittedDate =2019-12-12;
+	submittedDate = null;
 	reasonForRejection ="";
 	}
 	
 	
 
 
-	public PurchaseRequest (int id, User user, String description, String justification, Date dateNeeded,
+	public PurchaseRequest (int id, User user, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, double total, 
 		//	Date submittedDate, 
 			String reasonForRejection,
-			boolean isActive, Date dateCreated, Date dateUpdated, int updatedByUser) {
+			boolean isActive, LocalDate dateCreated, LocalDate dateUpdated, int updatedByUser) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -64,7 +64,7 @@ public class PurchaseRequest {
 		this.reasonForRejection = reasonForRejection;
 	}
 
-	public PurchaseRequest (User user, String description, String justification, Date dateNeeded,
+	public PurchaseRequest (User user, String description, String justification, LocalDate dateNeeded,
 			String deliveryMode, String status, double total, String reasonForRejection) {
 		//super();
 		this.user = user;
@@ -117,12 +117,12 @@ public class PurchaseRequest {
 	}
 
 
-	public Date getDateNeeded() {
+	public LocalDate getDateNeeded() {
 		return dateNeeded;
 	}
 
 
-	public void setDateNeeded(Date dateNeeded) {
+	public void setDateNeeded(LocalDate dateNeeded) {
 		this.dateNeeded = dateNeeded;
 	}
 
@@ -157,12 +157,12 @@ public class PurchaseRequest {
 	}
 
 
-	public java.util.Date getSubmittedDate() {
+	public LocalDate getSubmittedDate() {
 		return submittedDate;
 	}
 
 
-	public void setSubmittedDate(java.util.Date date) {
+	public void setSubmittedDate(LocalDate date) {
 		this.submittedDate = date;
 	}
 

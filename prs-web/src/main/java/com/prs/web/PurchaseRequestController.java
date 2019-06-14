@@ -3,6 +3,7 @@ package com.prs.web;
 //import java.sql.Date;
 import java.util.List;
 import java.util.Optional;
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ import com.prs.db.PurchaseRequestRepository;
 import com.prs.db.UserRepository;
 
 @RestController
-@RequestMapping("/purchaseRequest")
+@RequestMapping("/purchase-requests")
 public class PurchaseRequestController {
 
 	@Autowired
@@ -75,7 +76,7 @@ public class PurchaseRequestController {
 	public JsonResponse submitNew(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		u.setStatus("new");
-		u.setSubmittedDate(new Date());
+		u.setSubmittedDate(LocalDate.now());
 		try {
 			jr=JsonResponse.getInstance(purchaseRequestRepo.save(u));
 		}
@@ -97,7 +98,7 @@ public class PurchaseRequestController {
 			u.setStatus("review");
 		}
 		Date date = new Date();
-		u.setSubmittedDate(date);
+		u.setSubmittedDate(LocalDate.now());
 		try {
 			if (purchaseRequestRepo.existsById(u.getId())) {
 				jr=JsonResponse.getInstance(purchaseRequestRepo.save(u));
@@ -149,7 +150,7 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	public JsonResponse update(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		//May need to enhance exception handling if more than one exception type needs to be caught
@@ -167,7 +168,7 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/")
 	public JsonResponse delete(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		//May need to enhance exception handling if more than one exception type needs to be caught

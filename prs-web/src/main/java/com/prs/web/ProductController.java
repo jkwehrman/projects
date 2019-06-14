@@ -18,7 +18,7 @@ import com.prs.business.User;
 import com.prs.db.ProductRepository;
 
 @RestController
-@RequestMapping("/product")
+@RequestMapping("/products")
 public class ProductController {
 
 	@Autowired
@@ -56,7 +56,6 @@ public class ProductController {
 	@PostMapping("/")
 	public JsonResponse add(@RequestBody Product u) {
 		JsonResponse jr = null;
-		//May need to enhance exception handling if more than one exception type needs to be caught
 		try {
 			jr=JsonResponse.getInstance(productRepo.save(u));
 		}
@@ -66,10 +65,9 @@ public class ProductController {
 		return jr;
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	public JsonResponse update(@RequestBody Product u) {
 		JsonResponse jr = null;
-		//May need to enhance exception handling if more than one exception type needs to be caught
 		try {
 			if (productRepo.existsById(u.getId())) {
 				jr=JsonResponse.getInstance(productRepo.save(u));

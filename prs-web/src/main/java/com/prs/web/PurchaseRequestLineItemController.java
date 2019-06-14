@@ -1,6 +1,6 @@
 package com.prs.web;
 
-import java.util.Date;
+//import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,7 +27,7 @@ import com.prs.db.ProductRepository;
 
 
 @RestController
-@RequestMapping("/purchaseRequestLineItem")
+@RequestMapping("/purchase-request-line-items")
 public class PurchaseRequestLineItemController {
 
 	@Autowired
@@ -89,21 +89,21 @@ public class PurchaseRequestLineItemController {
 		return jr;
 	}
 	
-	@PutMapping("/{id}")
-	public JsonResponse update(@RequestBody PurchaseRequestLineItem u) {
-		JsonResponse jr = null;
-		try {
-				jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
-				//recalculatePRTotal(u);
-		}
-		catch (Exception e ) {
-			jr=JsonResponse.getInstance("PRLI Update failed. Exception is " + e.getMessage());
-
-		}
-		return jr;
-	}
+//	@PutMapping("/")
+//	public JsonResponse update(@RequestBody PurchaseRequestLineItem u) {
+//		JsonResponse jr = null;
+//		try {
+//				jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
+//				//recalculatePRTotal(u);
+//		}
+//		catch (Exception e ) {
+//			jr=JsonResponse.getInstance("PRLI Update failed. Exception is " + e.getMessage());
+//
+//		}
+//		return jr;
+//	}
 	
-	@PutMapping("/purchase-request-line-items")
+	@PutMapping("/   ")
 	public JsonResponse updateWithRecalculatingPR(@RequestBody PurchaseRequestLineItem u) {
 		JsonResponse jr = null;
 		try {

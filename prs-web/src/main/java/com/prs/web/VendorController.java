@@ -23,7 +23,7 @@ import com.prs.db.VendorRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/vendor")
+@RequestMapping("/vendors")
 public class VendorController {
 
 	@Autowired
@@ -71,7 +71,7 @@ public class VendorController {
 			return jr;
 		}
 
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	public JsonResponse update(@RequestBody Vendor u) {
 		JsonResponse jr = null;
 		//May need to enhance exception handling if more than one exception type needs to be caught

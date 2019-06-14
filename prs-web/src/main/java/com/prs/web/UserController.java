@@ -12,7 +12,7 @@ import com.prs.db.UserRepository;
 
 @CrossOrigin
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/users")
 public class UserController {
 
 	@Autowired
@@ -80,7 +80,7 @@ public class UserController {
 		return jr;
 	}
 
-	@PutMapping("/{id}")
+	@PutMapping("/")
 	public JsonResponse update(@RequestBody User u) {
 		JsonResponse jr = null;
 		//May need to enhance exception handling if more than one exception type needs to be caught
@@ -98,7 +98,7 @@ public class UserController {
 		return jr;
 	}
 
-	@DeleteMapping("/{id}")
+	@DeleteMapping("/")
 	public JsonResponse delete(@RequestBody User u) {
 		JsonResponse jr = null;
 		//May need to enhance exception handling if more than one exception type needs to be caught
