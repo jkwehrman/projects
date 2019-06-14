@@ -66,18 +66,18 @@ public class PurchaseRequestLineItemController {
 		return jr;
 	}
 
-	@PostMapping("/")
-	public JsonResponse add(@RequestBody PurchaseRequestLineItem u) {
-		JsonResponse jr = null;
-		try {
-			jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
-		}
-		catch (Exception e ) {
-			jr=JsonResponse.getInstance("PRLI Add failed. Exception is " + e.getMessage());		}
-		return jr;
-	}
+//	@PostMapping("/")
+//	public JsonResponse add(@RequestBody PurchaseRequestLineItem u) {
+//		JsonResponse jr = null;
+//		try {
+//			jr=JsonResponse.getInstance(purchaseRequestLineItemRepo.save(u));
+//		}
+//		catch (Exception e ) {
+//			jr=JsonResponse.getInstance("PRLI Add failed. Exception is " + e.getMessage());		}
+//		return jr;
+//	}
 
-	@PostMapping("/purchase-request-line-items")
+	@PostMapping("/")
 	public JsonResponse addWithRecalculating(@RequestBody PurchaseRequestLineItem u) {
 		JsonResponse jr = null;
 		try {

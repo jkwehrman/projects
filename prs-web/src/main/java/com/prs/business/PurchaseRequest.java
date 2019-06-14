@@ -26,8 +26,9 @@ public class PurchaseRequest {
 	private String deliveryMode;
 	private String status;
 	private double total;
-	private java.util.Date submittedDate;
+	private java.util.Date LocalDate;
 	private String reasonForRejection;
+	private int submittedDate;
 	
 	public PurchaseRequest () {
 	id =0;
@@ -38,7 +39,7 @@ public class PurchaseRequest {
 	deliveryMode ="";
 	status ="";
 	total =0.0;
-	submittedDate =null;
+	submittedDate =2019-12-12;
 	reasonForRejection ="";
 	}
 	

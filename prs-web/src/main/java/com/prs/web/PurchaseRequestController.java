@@ -75,6 +75,7 @@ public class PurchaseRequestController {
 	public JsonResponse submitNew(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		u.setStatus("new");
+		u.setSubmittedDate(new Date());
 		try {
 			jr=JsonResponse.getInstance(purchaseRequestRepo.save(u));
 		}
@@ -85,7 +86,7 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@PutMapping("/submit-review/{id}")
+	@PutMapping("/submit-review")
 	public JsonResponse SubmitForReview(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		double costLimit = 50.00;
@@ -129,7 +130,7 @@ public class PurchaseRequestController {
 		return jr;
 	}
 
-	@PutMapping("/approve/{id}")
+	@PutMapping("/approve")
 	public JsonResponse approve(@RequestBody PurchaseRequest u) {
 		JsonResponse jr = null;
 		u.setStatus("Approved");
